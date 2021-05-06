@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mission to Mars</title>
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous">
+</head>
+
+  <body class="text-white" style="background-color:black;">
+  
+    <div class="container">
+
+      <!-- Jumbotron section -->
+      <div class="jumbotron text-center" style="background-color:black;">
+        <h1>Mission to Mars</h1>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data!</a></p>
+      </div>
+
+      <!-- News section -->
+
+      <div class="container">
+            <h2>Latest Mars News</h2>
+              <h4>{{scraped_data.Title}}</h4>
+                  <p>{{scraped_data.news_p}}</p>
+        </div>
+
+      <!-- Featured image/weather/facts section -->
+      <div class="container">
+
+        <div class="row">
+          <!-- Left side of container, 2/3 of page width-->
+          <div class="col-md-8">
+            <h3>Featured Mars Image</h3>
+              <img src="{{scraped_data.featured_image_url}}" class="img-fluid" alt="Mars Featured Image">
+            </div>
+
+         
+
+          <!-- Table -->
+          <br>
+          <h3>Mars Facts</h3>
+            <div style="max-width: 450px; max-height: 150px; font-size: 15px; margin-bottom: 65px;">
+            {{scraped_data.mars_facts|safe}}
+            </div>
+          </div>
+
+        <!-- Hemispheres images -->
+        <h3 style="padding-top: 50px; margin-top: 100px; text-align: center;">Mars Hemispheres</h3>
+        <div class="card-deck">
+            <hr>
+            <div class="col-md-12">
+                <div class="row">
+                    {% for item in scraped_data.hemisphere_image_urls %}
+                    <div class="col-md-6">
+                        <div class="card text-white bg-dark" style="margin: 30px;">
+                            <img class="card-img-top" src="{{ item.img_url }}" />
+                            <div class="card-body">
+                                <p class="card-text">{{ item.title }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  <!--These are <script>s from Bootstrap website. Many BS components require the use of JavaScript to function -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
